@@ -2,7 +2,8 @@
 /*ToDo: Create Structs from member ptrs*/
 //Base Pointers;
 static uintptr_t GameManagerOffset = 0x160B8D0; 
-
+static uintptr_t KatanaAppOffset = 0x0166C1D8;
+static uintptr_t DLDrawDevice = 0x0166C1D0;
 //Basic Data Types
 typedef struct Vec2
 {
@@ -204,6 +205,8 @@ public:
 
 public:
     PlayerCtrl* GetPlayerCtrl();
+    void Godmode(bool enable);
+
 };
 
 typedef enum CameraMode
