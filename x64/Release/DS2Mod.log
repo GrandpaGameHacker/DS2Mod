@@ -1,7 +1,8 @@
-﻿  pch.cpp
+﻿  DS2.cpp
   dllmain.cpp
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 1 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  9 of 85 functions (10.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   DS2Mod.vcxproj -> C:\Users\Eleni\source\repos\DS2Mod\x64\Release\DS2Mod.dll

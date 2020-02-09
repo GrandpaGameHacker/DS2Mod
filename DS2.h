@@ -1,4 +1,6 @@
 #pragma once
+#include <Windows.h>
+#include <vector>
 /*ToDo: Create Structs from member ptrs*/
 //Base Pointers;
 static uintptr_t GameManagerOffset = 0x160B8D0; 
@@ -38,7 +40,7 @@ typedef struct StatFloat {
 
 typedef struct SpEffectOwner {
     uintptr_t Vftable_SpEffectOwner;
-    struct PlayerCtrl* m_pPlayerCtrl;
+    class PlayerCtrl* m_pPlayerCtrl;
     uintptr_t m_pChrStatusAbnormalities;
     DWORD64 unknown;
 } SpEffectOwner;
@@ -52,14 +54,14 @@ public:
 	char padding_0xc[4];
 };
 
-class GameEntity : GameObject 
+class GameEntity : public GameObject 
 {
 public:
 	uintptr_t ptr_0x10;
 	uintptr_t ptr_0x18;
 };
 
-class CharacterCtrlBase : GameEntity
+class CharacterCtrlBase : public GameEntity
 {
 public:
 	uintptr_t m_Heap_;
@@ -75,7 +77,7 @@ public:
 	char field_0x56[2];
 };
 
-class CharacterCtrl : CharacterCtrlBase
+class CharacterCtrl : public CharacterCtrlBase
 {
 public:
     uintptr_t ptr_0x58;
@@ -109,15 +111,14 @@ public:
     float m_PlayerSpeedMin;
     StatInt m_Health;
     int m_HealthUndead;
-    short field_0x178;
-    char field_0x17a;
-    char field_0x17b;
-    DWORD64 field_0x17c;
-    DWORD64 field_0x184;
-    DWORD64 field_0x18c;
-    DWORD64 field_0x194;
-    DWORD64 field_0x19c;
-    DWORD64 field_0x1a4;
+    char field_0x178[4];
+    char filler[0x30];
+    //DWORD64 field_0x17c;
+    //DWORD64 field_0x184;
+    //DWORD64 field_0x18c;
+    //DWORD64 field_0x194;
+    //DWORD64 field_0x19c;
+    //DWORD64 field_0x1a4;
     StatFloat m_Stamina;
     StatFloat m_UnknownStat;
     StatFloat m_Poison;
@@ -196,12 +197,13 @@ public:
 
 };
 
-class PlayerCtrl : CharacterCtrl {
+class PlayerCtrl : public CharacterCtrl {
 public:
     uintptr_t m_pPlayerActionCtrl;
     uintptr_t field_0x488;
     uintptr_t m_PlayerStats;
     uintptr_t field_0x498;
+private:
 
 public:
     static PlayerCtrl* GetPlayerCtrl();
