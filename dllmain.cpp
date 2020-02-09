@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "dllmain.h"
-#include <cstdio>
-#include <iostream>
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -24,7 +22,7 @@ void Hackthread()
 {
     FILE* nullfile = nullptr;
     AllocConsole();
-    SetConsoleTitleA("<DS2 Debug Console>");
+    SetConsoleTitleA("< DS2 Debug Console >");
     AttachConsole(GetCurrentProcessId());
     freopen_s(&nullfile, "CONIN$", "r", stdin);
     freopen_s(&nullfile, "CONOUT$", "w", stdout);
@@ -41,14 +39,18 @@ void Hackthread()
             else { std::cout << "[-] Godmode Disabled\n"; }
         }
         /*Implement exit code with key combination
-        fclose(stdin);
-        fclose(stdout);
-        fclose(stderr);
-        FreeConsole();
 
-        HMODULE selfhandle;
-        GetModuleHandleEx(0, moduleName, &selfhandle);
-        FreeLibraryAndExitThread(selfhandle, 0)
         */
+    }
+
+    void OnExit(){
+      fclose(stdin);
+      fclose(stdout);
+      fclose(stderr);
+      FreeConsole();
+
+      HMODULE selfhandle;
+      GetModuleHandleEx(0, "DS2Mod.dll", &selfhandle);
+      FreeLibraryAndExitThread(selfhandle, 0)
     }
 };
