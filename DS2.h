@@ -206,10 +206,37 @@ public:
     PlayerCtrl* GetPlayerCtrl();
 };
 
-class CameraManager {
-    //0xc0 bool m_bCameraActive // True: Follow Player, False: Stay Still;
-public:
+typedef enum CameraMode
+{
+    UNKNOWN = 0,
+    TOPDOWN,
+    FIRSTPERSON,
+    ALTERNATIVE1,
+    ALTERNATIVE2,
+    ALTERNATIVE3
+    //6 crashes game
+}CameraMode;
 
+class CameraManager {
+public:
+    uintptr_t vftable;
+    //DLKRD::HeapAllocator<
+    //class_DLKR::DLDynamicHeap<
+    //class_WinAssertHeapStrategy<
+    //class_DLKR::DLBiHeapStrategy<
+    //class_DLKR::DLRobustHeap,class_DLKR::DLMultiThreadingPolicy
+    //>_>_>_>
+    uintptr_t DLKR_MultithreadRobustHeap;
+    bool m_bCameraFollowPlayer;
+    char padding_0x11[15];
+    uintptr_t m_pFreeCameraOperator;
+    uintptr_t m_pPlayerCameraOperator;
+    uintptr_t m_pIngameCameraOperator;
+    char field_0x30[0x18];
+    CameraMode m_CameraMode;
+    int field_0x4C;
+    char unused_0x50[0x120];
+    //Camera Rotation/Skew/Location
 public:
     CameraManager* GetCameraManager();
 };
