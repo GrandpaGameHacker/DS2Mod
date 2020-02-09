@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "dllmain.h"
 #include <cstdio>
+#include <iostream>
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -23,16 +24,21 @@ void Hackthread()
 {
     FILE* nullfile = nullptr;
     AllocConsole();
-    SetConsoleTitleA("<DS2_DebugConsole>");
+    SetConsoleTitleA("<DS2 Debug Console>");
     AttachConsole(GetCurrentProcessId());
     freopen_s(&nullfile, "CONIN$", "r", stdin);
     freopen_s(&nullfile, "CONOUT$", "w", stdout);
     freopen_s(&nullfile, "CONOUT$", "w", stderr);
-
+    std::cout << "[!] DS2Mod Injected!";
+    std::cout << "[i] Created By SamsonPianoFingers";
+    bool bGodmodeToggle = false;
     while (true)
     {
         if(GetAsyncKeyState(VK_NUMPAD0)) {
-            // Mod1
+            auto player = PlayerCtrl::GetPlayerCtrl();
+            bGodmodeToggle = player->Godmode(bGodmodeToggle);
+            if(bGodmodeToggle) std::cout << "[+] Godmode Enabled\n";
+            else { std::cout << "[-] Godmode Disabled\n"; }
         }
         /*Implement exit code with key combination
         fclose(stdin);

@@ -204,14 +204,14 @@ public:
     uintptr_t field_0x498;
 
 public:
-    PlayerCtrl* GetPlayerCtrl();
-    void Godmode(bool enable);
+    static PlayerCtrl* GetPlayerCtrl();
+    bool Godmode(bool enable);
 
 };
 
 typedef enum CameraMode
 {
-    UNKNOWN = 0,
+    ALTERNATIVE0 = 0,
     TOPDOWN,
     FIRSTPERSON,
     ALTERNATIVE1,
@@ -241,5 +241,5 @@ public:
     char unused_0x50[0x120];
     //Camera Rotation/Skew/Location
 public:
-    CameraManager* GetCameraManager();
+    static CameraManager* GetCameraManager();
 };

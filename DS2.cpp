@@ -12,9 +12,9 @@ PlayerCtrl * PlayerCtrl::GetPlayerCtrl()
 	return playerCtrl;
 }
 
-void PlayerCtrl::Godmode(bool enable)
+bool PlayerCtrl::Godmode(bool enabled)
 {
-	if (enable) {
+	if (!enabled) {
 		this->m_Health.min = this->m_Health.max;
 		this->m_HealthUndead = m_Health.max + 1;
 		this->m_Stamina.min = this->m_Stamina.max;
@@ -23,6 +23,7 @@ void PlayerCtrl::Godmode(bool enable)
 		this->m_Petrify.max = 0;
 		this->m_Curse.max = 0;
 		this->m_Toxic.max = 0;
+		return true;
 	}
 	else
 	{
@@ -34,6 +35,7 @@ void PlayerCtrl::Godmode(bool enable)
 		this->m_Petrify.max = 100;
 		this->m_Curse.max = 100;
 		this->m_Toxic.max = 100;
+		return false;
 	}
 }
 
