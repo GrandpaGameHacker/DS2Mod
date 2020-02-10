@@ -8,6 +8,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     {
     case DLL_PROCESS_ATTACH:
         CreateThread(0, 0, (LPTHREAD_START_ROUTINE)&Hackthread, 0, 0, 0);
+        //Hackthread();
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
@@ -38,6 +39,17 @@ void Hackthread()
             else std::cout << "[-] Godmode Disabled" << std::endl;
             Sleep(100);
         }
+
+        if (GetAsyncKeyState(VK_NUMPAD1)) {
+            auto camera = CameraManager::GetCameraManager();
+            camera->m_bCameraFollowPlayer = !camera->m_bCameraFollowPlayer;
+            if (!camera->m_bCameraFollowPlayer)
+                std::cout << "[+] Camera Hijack Enabled" << std::endl;
+            if (camera->m_bCameraFollowPlayer)
+                std::cout << "[-] Camera Hijack Disabled" << std::endl;
+            Sleep(100);
+        }
+
         if (GetAsyncKeyState(VK_DELETE))
         {
             exit();
@@ -50,8 +62,5 @@ void exit()
     fclose(stdout);
     fclose(stderr);
     FreeConsole();
-
-    HMODULE selfhandle;
-    GetModuleHandleEx(0, "DS2Mod.dll", &selfhandle);
-    FreeLibraryAndExitThread(selfhandle, 0);
+    ExitThread(0);
 }
