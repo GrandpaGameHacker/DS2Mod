@@ -1,23 +1,11 @@
 #include "DS2.h"
-
-uintptr_t ReadPointer(uintptr_t ptr, std::vector<unsigned int> offsets)
-{
-	uintptr_t addr = ptr;
-	for (unsigned int i = 0; i < offsets.size(); ++i)
-	{
-		addr = *(uintptr_t*)addr;
-		addr += offsets.at(i);
-	}
-	return addr;
-}
-
 //PlayerCtrl Functions
 PlayerCtrl * PlayerCtrl::GetPlayerCtrl()
 {
 	HMODULE baseAddress = GetModuleHandleA("DarksoulsII.exe");
 	uintptr_t ptr = (uintptr_t)baseAddress + GameManagerOffset;
 	std::vector<unsigned int> offsets = { 0xD0, 0x0 };
-	PlayerCtrl* playerCtrl =  (PlayerCtrl *)ReadPointer(ptr, offsets);
+	PlayerCtrl* playerCtrl =  (PlayerCtrl *)Memory::ReadPointer(ptr, offsets);
 	return playerCtrl;
 }
 
@@ -55,6 +43,6 @@ CameraManager* CameraManager::GetCameraManager()
 	HMODULE baseAddress = GetModuleHandleA("DarksoulsII.exe");
 	uintptr_t ptr = (uintptr_t)baseAddress + GameManagerOffset;
 	std::vector<unsigned int> offsets = { 0x20, 0x0 };
-	CameraManager* cameraManager = (CameraManager*) ReadPointer(ptr, offsets);
+	CameraManager* cameraManager = (CameraManager*) Memory::ReadPointer(ptr, offsets);
 	return cameraManager;
 }

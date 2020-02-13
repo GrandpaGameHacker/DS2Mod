@@ -1,7 +1,9 @@
 ﻿  dllmain.cpp
+  DS2.cpp
+  Memory.cpp
   Generating code
-  2 of 86 functions ( 2.3%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  25 of 86 functions (29.1%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    5 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   DS2Mod.vcxproj -> C:\Users\Eleni\source\repos\DS2Mod\x64\Release\DS2Mod.dll

@@ -1,4 +1,5 @@
 #pragma once
+#include "Memory.h"
 #include <Windows.h>
 #include <vector>
 /*ToDo: Create Structs from member ptrs*/
@@ -22,7 +23,7 @@ typedef struct Vec4
 	float x, y, z, w;
 } Vec4;
 
-typedef struct Transform
+typedef struct Matrix4x4
 {
 	Vec4 rotation_x;
 	Vec4 rotation_y;
@@ -81,7 +82,7 @@ class CharacterCtrl : public CharacterCtrlBase
 {
 public:
     uintptr_t ptr_0x58;
-    struct Transform coordinates;
+    struct Matrix4x4 coordinates;
     struct Vec4 pos2;
     uintptr_t ptr_0xb0;
     uintptr_t ptr_0xb8;
@@ -225,12 +226,6 @@ typedef enum CameraMode
 class CameraManager {
 public:
     uintptr_t vftable;
-    //DLKRD::HeapAllocator<
-    //class_DLKR::DLDynamicHeap<
-    //class_WinAssertHeapStrategy<
-    //class_DLKR::DLBiHeapStrategy<
-    //class_DLKR::DLRobustHeap,class_DLKR::DLMultiThreadingPolicy
-    //>_>_>_>
     uintptr_t DLKR_MultithreadRobustHeap;
     bool m_bCameraFollowPlayer;
     char padding_0x11[15];
