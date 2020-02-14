@@ -7,6 +7,7 @@
 static uintptr_t GameManagerOffset = 0x160B8D0; 
 static uintptr_t KatanaAppOffset = 0x0166C1D8;
 static uintptr_t DLDrawDevice = 0x0166C1D0;
+
 //Basic Data Types
 typedef struct Vec2
 {
@@ -82,8 +83,8 @@ class CharacterCtrl : public CharacterCtrlBase
 {
 public:
     uintptr_t ptr_0x58;
-    struct Matrix4x4 coordinates;
-    struct Vec4 pos2;
+    Matrix4 coordinates;
+    Vec4 pos2;
     uintptr_t ptr_0xb0;
     uintptr_t ptr_0xb8;
     uintptr_t ptr_0xc0;
@@ -167,8 +168,8 @@ public:
     int field_0x370;
     int field_0x374;
     uintptr_t m_pChrAsmCtrl;
-    uintptr_t m_pChrCollideReactionCtrl; /* indirect */
-    uintptr_t m_pChrCollideReactionCtrl2; /* indirect+20 */
+    uintptr_t m_pChrCollideReactionCtrl;
+    uintptr_t m_pChrCollideReactionCtrl2;
     uintptr_t m_pChrEventTriggerCtrl;
     uintptr_t m_pPlayerGameParamCalculator;
     uintptr_t m_pPlayerLockTargetCtrl;
@@ -195,7 +196,6 @@ public:
     uintptr_t m_pMapEntity;
     DWORD64 field_0x470;
     DWORD64 field_0x478;
-
 };
 
 class PlayerCtrl : public CharacterCtrl {
@@ -216,7 +216,7 @@ typedef enum CameraMode
 {
     ALTERNATIVE0 = 0,
     TOPDOWN,
-    FIRSTPERSON,
+    THIRDPERSON,
     ALTERNATIVE1,
     ALTERNATIVE2,
     ALTERNATIVE3
@@ -236,7 +236,8 @@ public:
     CameraMode m_CameraMode;
     int field_0x4C;
     char unused_0x50[0x120];
-    //Camera Rotation/Skew/Location
+    Matrix4x4 Camera;
+
 public:
     static CameraManager* GetCameraManager();
 };

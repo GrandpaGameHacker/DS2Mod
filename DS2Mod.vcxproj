@@ -153,11 +153,13 @@
   <ItemGroup>
     <ClInclude Include="dllmain.h" />
     <ClInclude Include="DS2.h" />
+    <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DS2.cpp" />
+    <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Memory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
